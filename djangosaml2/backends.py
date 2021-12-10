@@ -115,8 +115,10 @@ class Saml2Backend(ModelBackend):
             logger.error('"ava" key not found in session_info')
             return None
 
+        logging.info('getting session info')
         idp_entityid = session_info['issuer']
 
+        logging.info('clearning attributes')
         attributes = self.clean_attributes(session_info['ava'], idp_entityid)
 
         logger.debug(f'attributes: {attributes}')
@@ -127,6 +129,7 @@ class Saml2Backend(ModelBackend):
 
         user_lookup_key, user_lookup_value = self._extract_user_identifier_params(
             session_info, attributes, attribute_mapping)
+        logger.info('user_lookup_key:%s user_lookup_value:%s', user_lookup_key, user_lookup_value)
         if not user_lookup_value:
             logger.error('Could not determine user identifier')
             return None

@@ -492,7 +492,7 @@ class AssertionConsumerServiceView(SPConfigMixin, View):
             create_unknown_user = create_unknown_user()
 
         logger.debug(
-            'Trying to authenticate the user. Session info: %s', session_info)
+                'Trying to authenticate the user. Session info: %s request:%s attribute_mapping:%s create_unknown_user:%s assertion_info:%s', session_info, request, attribute_mapping, create_unknown_user, assertion_info)
         user = auth.authenticate(request=request,
                                  session_info=session_info,
                                  attribute_mapping=attribute_mapping,
