@@ -107,6 +107,7 @@ class Saml2Backend(ModelBackend):
                          'session is expired.')
 
     def authenticate(self, request, session_info=None, attribute_mapping=None, create_unknown_user=True, assertion_info=None, **kwargs):
+        logging.info('in authenticate\n')
         if session_info is None or attribute_mapping is None:
             logger.info('Session info or attribute mapping are None')
             return None
